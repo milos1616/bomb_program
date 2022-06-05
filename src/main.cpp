@@ -57,6 +57,7 @@ void loop() {
     delay(EXPLOSION_LENGTH);
     digitalWrite(LED, LOW);
     digitalWrite(SIREN, LOW);
+    return;
   }
 
   for(int i = 0; i < 5; i++){
@@ -66,6 +67,7 @@ void loop() {
       digitalWrite(SIREN, HIGH);
       delay(VICTORY_LENGTH);
       digitalWrite(SIREN, LOW);
+      return;
     }
   }
 
@@ -78,9 +80,10 @@ void loop() {
   if(beepTime > beepDelay){
     digitalWrite(SIREN, HIGH);
     digitalWrite(LED, HIGH);
-    delay(BEEP_LENGTH);
+  }else if(beepTime > beepDelay+BEEP_LENGTH){
     digitalWrite(SIREN, LOW);
     digitalWrite(LED, LOW);
     beepTime = 0;
   }
+
 }
