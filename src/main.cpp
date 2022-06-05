@@ -5,13 +5,13 @@
 #define GAMELENGTH 40000              // in milliseconds
 #define BEEP_LENGTH 100
 #define BEEP_DELAY 2100 
-#define BEEP_DECREASE (int)(GAMELENGTH/(BEEP_DELAY-100)*10)      
+#define BEEP_DECREASE (int)(GAMELENGTH/(BEEP_DELAY-100)*100)      
 
 #define MIN_PIN_NUMBER 24
 #define MAX_PIN_NUMBER 43
 
 
-#define WRONG_WIRES 19
+#define WRONG_PIN 19
 
 
 #define LED LED_BUILTIN
@@ -48,9 +48,9 @@ void loop() {
   if (digitalRead(RESTART_PIN) == LOW) {
     restart();
   }
-  if(gameOver) goto end;
+  if(gameOver) return;
 
-  if (millis() - startTime > GAMELENGTH || digitalRead(WRONG_WIRES) == LOW) {
+  if (millis() - startTime > GAMELENGTH || digitalRead(WRONG_PIN) == LOW) {
     gameOver = true;
     digitalWrite(LED, HIGH);
     digitalWrite(SIREN, HIGH);
@@ -83,9 +83,4 @@ void loop() {
     digitalWrite(LED, LOW);
     beepTime = 0;
   }
-
-  
-  
-  
-  end:
 }
