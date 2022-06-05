@@ -26,6 +26,12 @@ int beepDelay = BEEP_DELAY;
 const int CORRECT_WIRES[5] = {29,27,25,23,21};
 bool gameOver = false;
 
+void restart(){
+  startTime = millis();
+  gameOver = false;
+  beepTime = 0;
+  beepDecTimer = 0;
+}
 
 void setup() {
   for (int i = MIN_PIN_NUMBER; i < MAX_PIN_NUMBER; i += 2) {
@@ -37,12 +43,7 @@ void setup() {
   restart();
 }
 
-void restart(){
-  startTime = millis();
-  gameOver = false;
-  beepTime = 0;
-  beepDecTimer = 0;
-}
+
 
 void loop() {
   if (digitalRead(RESTART_PIN) == LOW) {
